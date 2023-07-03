@@ -51,6 +51,8 @@ function create_container_image() {
   cd ~/hello-cloudbuild-app
 
   COMMIT_ID="$(git rev-parse --short=7 HEAD)"
+  PROJECT_ID=$(gcloud config get-value project)
+  REGION=us-central1
 
   gcloud builds submit --tag="${REGION}-docker.pkg.dev/${PROJECT_ID}/my-repository/hello-cloudbuild:${COMMIT_ID}" .
 }
