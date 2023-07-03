@@ -37,6 +37,7 @@ function create_lab_resources() {
 }
 
 function create_git_repository() {
+  cd ~
   gcloud source repos create sample-app
   gcloud source repos clone sample-app
 
