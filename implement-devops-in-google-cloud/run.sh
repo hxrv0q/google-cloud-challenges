@@ -63,7 +63,7 @@ function create_cloud_trigger() {
     --description="Builds the sample-app for production" \
     --name="sample-app-prod-deploy"
 
-  gcloud beta builds triggers create cloud-source-repositotries \
+  gcloud beta builds triggers create cloud-source-repositories  \
     --repo=sample-app \
     --branch-pattern="^dev$" \
     --build-config=cloudbuild-dev.yaml \
