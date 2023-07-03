@@ -84,6 +84,7 @@ function run_script() {
   echo "2. Create lab resources"
   echo "3. Create git repository"
   echo "4. Create cloud trigger"
+  echo "5. Deploy versions application"
 
   echo "Enter your choice: "
   read -r choice
@@ -100,6 +101,9 @@ function run_script() {
       ;;
     4)
       create_cloud_trigger
+      ;;
+    5)
+      deploy_versions_application
       ;;
     *)
       echo "Invalid choice"
