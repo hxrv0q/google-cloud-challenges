@@ -29,7 +29,6 @@ function create_lab_resources() {
 
   gcloud container clusters create hello-cluster \
     --location=us-central1-a
-    --release-channel=regular \
     --cluster-version='1.25.5-gke.2000' \
     --enable-autoscaling \
     --min-nodes=2 \
