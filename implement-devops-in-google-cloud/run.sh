@@ -28,13 +28,12 @@ function create_lab_resources() {
     --description="My Artifact Registry repository"
 
   gcloud container clusters create hello-cluster \
-    --zone us-central1-a \
-    --release-channel regular \
-    --cluster-version 1.25.5-gke.2000 \
+    --location=us-central1-a
+    --release-channel=regular \
+    --cluster-version='1.25.5-gke.2000' \
     --enable-autoscaling \
-    --min-nodes 2 \
-    --max-nodes 6 \
-    --num-nodes 3
+    --min-nodes=2 \
+    --max-nodes=6
 
   kubectl create namespace prod
   kubectl create namespace dev
