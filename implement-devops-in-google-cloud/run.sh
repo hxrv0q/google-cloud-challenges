@@ -38,19 +38,15 @@ function create_git_repository() {
 }
 
 echo "Welcome to the Lab Initialization Menu:"
-echo "1. Configure git"
-echo "2. Create lab resources"
-echo "3. Create repository"
+echo "1. Create lab resources"
+echo "2. Create repository"
 read -r choice
 
 case $choice in
   1)
-    git_configure
-    ;;
-  2)
     create_lab_resources
     ;;
-  3)
+  2)
     create_git_repository
     ;;
   *)
