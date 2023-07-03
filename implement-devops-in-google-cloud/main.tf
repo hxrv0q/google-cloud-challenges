@@ -3,11 +3,6 @@ provider "google" {
   region  = "us-central1"
 }
 
-resource "google_container_registry_repository" "my_repository" {
-  name = "my-repository"
-  location = "us-central1"
-}
-
 resource "google_container_cluster" "hello_cluster" {
   name     = "hello-cluster"
   location = "us-central1-a"
