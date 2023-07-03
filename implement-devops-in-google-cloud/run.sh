@@ -31,8 +31,29 @@ function create_lab_resources() {
   terraform plan -out=tfplan
 }
 
-function create_repository() {
+function create_git_repository() {
   cd ~
 
   gsutil cp -r gs://spls/gsp330/sample-app/* sample-app
 }
+
+echo "Welcome to the Lab Initialization Menu:"
+echo "1. Configure git"
+echo "2. Create lab resources"
+echo "3. Create repository"
+read -r choice
+
+case $choice in
+  1)
+    git_configure
+    ;;
+  2)
+    create_lab_resources
+    ;;
+  3)
+    create_git_repository
+    ;;
+  *)
+    echo "Invalid choice. Exiting."
+    ;;
+esac
