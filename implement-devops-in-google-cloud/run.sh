@@ -71,6 +71,14 @@ function create_cloud_trigger() {
     --name="sample-app-dev-deploy"
 }
 
+function deploy_versions_application() {
+  sed -i 's/<version>/v1.0/g' ~/sample-app/cloudbuild-dev.yaml
+  sed -i 's/<todo>/dev/g' ~/sample-app/dev/deployment.yaml
+
+  sed -i 's/<version>/v1.0/g' ~/sample-app/cloudbuild.yaml
+  sed -i 's/<todo>/prod/g' ~/sample-app/prod/deployment.yaml
+}
+
 function run_script() {
   echo "1. Configure git"
   echo "2. Create lab resources"
