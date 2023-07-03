@@ -31,7 +31,9 @@ resource "google_pubsub_topic" "photography_topic" {
 resource "null_resource" "replace_topic_id" {
   provisioner "local-exec" {
     command = <<EOF
+      mkdir -p function
       cp index.js function/index.js
+      cp package.json function/package.json
       sed -i 's/REPLACE_WITH_YOUR_TOPIC_ID/${local.topic_id}/g' function/index.js
     EOF
   }
