@@ -71,12 +71,34 @@ function create_cloud_trigger() {
     --name="sample-app-dev-deploy"
 }
 
+function build_image() {
+  PROJECT_ID="$(gcloud config get-value project)"
+  COMMIT_ID="$(git rev-parse --short=7 HEAD)"
+  REPO="my-repository"
+  REGION="us-central1"
+
+  local tag="${REGION}-docker.pkg.dev/${PROJECT_ID}/$REPO/hello-cloudbuild:${COMMIT_ID}"
+  gcloud builds submit --tag=$tag .
+
+  return $tag
+}
+
 function deploy_versions_application() {
   sed -i 's/<version>/v1.0/g' ~/sample-app/cloudbuild-dev.yaml
-  sed -i 's/<todo>/dev/g' ~/sample-app/dev/deployment.yaml
+  local image=$(build_image)
+  sed -i "s/<todo>/${image}/g" ~/sample-app/dev/deployment.yaml
+
+  git add .
+  git commit -m "Subscribe to quicklab" 
+  git push -u origin dev
 
   sed -i 's/<version>/v1.0/g' ~/sample-app/cloudbuild.yaml
-  sed -i 's/<todo>/prod/g' ~/sample-app/prod/deployment.yaml
+  local prodImage=$(build_image)
+  sed -i "s/<todo>/${prodImage}/g" ~/sample-app/prod/deployment.yaml
+
+  git add .
+  git commit -m "Subscribe to quicklab" 
+  git push -u origin master
 }
 
 function run_script() {
