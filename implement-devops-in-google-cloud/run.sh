@@ -49,10 +49,10 @@ function create_git_repository() {
   git add .
   git commit -m "Initial commit"
 
-  git push google master
+  git push origin master
 
   git checkout -b dev
-  git push google dev
+  git push -u origin dev
 }
 
 function create_cloud_trigger() {
