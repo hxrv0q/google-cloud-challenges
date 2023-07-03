@@ -37,8 +37,12 @@ function create_lab_resources() {
 }
 
 function create_git_repository() {
+  gcloud source repos create sample-app
+  gcloud source repos clone sample-app
+
   cd ~
   gsutil cp -r gs://spls/gsp330/sample-app/* sample-app
+
 
   cd sample-app
   git add .
